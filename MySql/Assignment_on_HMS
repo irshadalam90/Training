@@ -1,0 +1,163 @@
+
+Assignment on HOSPITAL MANAGEMENT SYSTEM database design
+
+->Create data base HMS_DB
+
+mysql> CREATE DATABASE HMS_DB;
+Query OK, 1 row affected (0.00 sec)
+
+
+-> Show Dtabases
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| HMS_DB             |
+| mysql              |
+| performance_schema |
+| testdb             |
++--------------------+
+
+
+->Tables are:-
+mysql> show tables;
++------------------+
+| Tables_in_HMS_DB |
++------------------+
+| bill_tbl         |
+| department_tbl   |
+| doctor_tbl       |
+| inpatient_tbl    |
+| lab_tbl          |
+| nurse_tbl        |
+| outpatient_tbl   |
+| patient_tbl      |
+| room_tbl         |
++------------------+
+
+->Table structures:-
+1)Patient Table
+
+mysql> DESCRIBE patient_tbl;
+
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| p_id    | varchar(5)  | NO   | PRI | NULL    |       |
+| name    | varchar(30) | NO   |     | NULL    |       |
+| age     | int(11)     | NO   |     | NULL    |       |
+| weight  | int(11)     | NO   |     | NULL    |       |
+| gender  | varchar(10) | NO   |     | NULL    |       |
+| address | text        | NO   |     | NULL    |       |
+| phoneno | int(11)     | NO   |     | NULL    |       |
+| disease | varchar(30) | NO   |     | NULL    |       |
+| doc_id  | varchar(5)  | NO   | MUL | NULL    |       |
+| n_id    | varchar(5)  | NO   | MUL | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+
+
+
+2)Doctor Table
+
+mysql> DESCRIBE doctor_tbl;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| d_id     | varchar(5)  | NO   | PRI | NULL    |       |
+| doc_name | varchar(30) | NO   |     | NULL    |       |
+| phone_no | int(11)     | NO   |     | NULL    |       |
+| email_Id | varchar(50) | YES  |     | NULL    |       |
+| dep_id   | varchar(5)  | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+
+3)Nurse Table
+
+mysql> DESCRIBE nurse_tbl;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| n_id     | varchar(5)  | NO   | PRI | NULL    |       |
+| name     | varchar(30) | NO   |     | NULL    |       |
+| email_id | varchar(50) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+
+4)Department Table
+
+mysql> DESCRIBE department_tbl;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| dep_id      | varchar(5)  | NO   | PRI | NULL    |       |
+| dep_name    | varchar(30) | NO   |     | NULL    |       |
+| description | text        | NO   |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+
+5)Lab Table
+
+mysql> DESCRIBE lab_tbl;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| lab_no   | varchar(10) | NO   | PRI | NULL    |       |
+| p_id     | varchar(5)  | NO   |     | NULL    |       |
+| weight   | int(11)     | NO   |     | NULL    |       |
+| d_id     | varchar(5)  | NO   | MUL | NULL    |       |
+| category | varchar(15) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+6)Inpatient Table
+
+mysql> DESCRIBE inpatient_tbl;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| p_id        | varchar(5)  | NO   | PRI | NULL    |       |
+| room_no     | varchar(10) | NO   |     | NULL    |       |
+| date_of_adm | datetime    | NO   |     | NULL    |       |
+| date_of_dis | datetime    | NO   |     | NULL    |       |
+| advance     | int(11)     | NO   |     | NULL    |       |
+| lab_no      | varchar(10) | NO   | MUL | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+
+7)Outpatient Table
+
+mysql> DESCRIBE outpatient_tbl;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| p_id   | varchar(5)  | NO   | PRI | NULL    |       |
+| date   | datetime    | NO   |     | NULL    |       |
+| lab_no | varchar(10) | NO   | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+
+8)Room Table
+
+mysql> DESCRIBE room_tbl;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| room_no   | varchar(10) | NO   | PRI | NULL    |       |
+| room_type | varchar(20) | NO   |     | NULL    |       |
+| status    | varchar(20) | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
+9)Bill Table
+
+mysql> DESCRIBE bill_tbl;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| bill_no         | varchar(10) | NO   | PRI | NULL    |       |
+| p_id            | varchar(5)  | NO   | MUL | NULL    |       |
+| patient_type    | varchar(20) | YES  |     | NULL    |       |
+| doctor_charge   | int(11)     | NO   |     | NULL    |       |
+| medicine_charge | int(11)     | NO   |     | NULL    |       |
+| room_charge     | int(11)     | NO   |     | NULL    |       |
+| advance         | int(11)     | NO   |     | NULL    |       |
+| lab_charge      | int(11)     | NO   |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+

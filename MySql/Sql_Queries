@@ -1,0 +1,267 @@
+->THREE TABLES:-
+1)employee_tbl
+
+mysql> select * from employee_tbl_bkp;
++--------+----------+------+------------+------------------+--------+--------+
+| emp_id | emp_name | age  | mobileno   | emailId          | salary | dep_id |
++--------+----------+------+------------+------------------+--------+--------+
+|      1 | Alam     |   33 | 9999966677 | alam@gmail.com   |  10000 |      1 |
+|      2 | Aman     |   23 | 9999966688 | aman@gmail.com   |  15000 |      2 |
+|      3 | Amar     |   25 | 9999966000 | amar@gmail.com   |  18000 |      3 |
+|      4 | Rakesh   |   29 | 9800000880 | rakesh@gmail.com |  12000 |      3 |
+|      5 | Rahul    |   26 | 9800000840 | rahul@gmail.com  |  16000 |      2 |
+|      6 | vikash   |   28 | 9800004840 | vikash@gmail.com |  19000 |      1 |
++--------+----------+------+------------+------------------+--------+--------+
+
+2)department_tbl
+
+mysql> select * from department_tbl;
+
++--------+-----------+------+
+| dep_id | dep_name  | c_id |
++--------+-----------+------+
+|      1 | IT        |    1 |
+|      2 | HR        |    2 |
+|      3 | Finance   |    2 |
+|      4 | Marketing |    1 |
++--------+-----------+------+
+
+3)company_tbl
+
+mysql> select * from company_tbl;
++------+---------------+------------+
+| c_id | c_name        | c_location |
++------+---------------+------------+
+|    1 | Beryl Systems | Gurgaon    |
+|    2 | Wipro         | Noida      |
+|    3 | HCL           | Delhi      |
+|    4 | Google        | mumbai     |
++------+---------------+------------+
+
+-> SQL JOIN Queries:-
+
+1)INNER JOIN query using two tables.
+
+mysql> select e.emp_name, e.salary, d.dep_name from employee_tbl e INNER JOIN department_tbl d ON e.dep_id=d.dep_id;
++----------+--------+----------+
+| emp_name | salary | dep_name |
++----------+--------+----------+
+| vikash   |   7423 | IT       |
+| Aman     |  15000 | HR       |
+| Rahul    |   6250 | HR       |
+| Amar     |  18000 | Finance  |
++----------+--------+----------+
+
+2)LEFT JOIN query using two tables.
+
+mysql> select e.emp_name, e.salary, d.dep_name from employee_tbl e LEFT JOIN department_tbl d ON e.dep_id=d.dep_id;
++----------+--------+----------+
+| emp_name | salary | dep_name |
++----------+--------+----------+
+| Aman     |  15000 | HR       |
+| Amar     |  18000 | Finance  |
+| Rahul    |   6250 | HR       |
+| vikash   |   7423 | IT       |
++----------+--------+----------+
+
+3)RIGHT JOIN query using two tables.
+
+mysql> select e.emp_name, e.salary, d.dep_name from employee_tbl e RIGHT JOIN department_tbl d ON e.dep_id=d.dep_id;
++----------+--------+-----------+
+| emp_name | salary | dep_name  |
++----------+--------+-----------+
+| vikash   |   7423 | IT        |
+| Aman     |  15000 | HR        |
+| Rahul    |   6250 | HR        |
+| Amar     |  18000 | Finance   |
+| NULL     |   NULL | Marketing |
++----------+--------+-----------+
+
+1)INNER JOIN query using three tables.
+
+mysql> select e.emp_name, e.salary, d.dep_name, c.c_name from employee_tbl e INNER JOIN department_tbl d ON e.dep_id=d.dep_id INNER JOIN company_tbl c ON d.c_id=c.c_id; 
++----------+--------+----------+---------------+
+| emp_name | salary | dep_name | c_name        |
++----------+--------+----------+---------------+
+| vikash   |   7423 | IT       | Beryl Systems |
+| Aman     |  15000 | HR       | Wipro         |
+| Rahul    |   6250 | HR       | Wipro         |
+| Amar     |  18000 | Finance  | Wipro         |
++----------+--------+----------+---------------+
+
+
+2)LEFT JOIN query using three tables.
+
+mysql> select e.emp_name, e.salary, d.dep_name, c.c_name from employee_tbl e LEFT JOIN department_tbl d ON e.dep_id=d.dep_id LEFT JOIN company_tbl c ON d.c_id=c.c_id; 
++----------+--------+----------+---------------+
+| emp_name | salary | dep_name | c_name        |
++----------+--------+----------+---------------+
+| Aman     |  15000 | HR       | Wipro         |
+| Amar     |  18000 | Finance  | Wipro         |
+| Rahul    |   6250 | HR       | Wipro         |
+| vikash   |   7423 | IT       | Beryl Systems |
++----------+--------+----------+---------------+
+
+
+3)RIGHT JOIN query using three tables.
+
+mysql> select e.emp_name, e.salary, d.dep_name, c.c_name from employee_tbl e RIGHT JOIN department_tbl d ON e.dep_id=d.dep_id RIGHT JOIN company_tbl c ON d.c_id=c.c_id; 
++----------+--------+-----------+---------------+
+| emp_name | salary | dep_name  | c_name        |
++----------+--------+-----------+---------------+
+| vikash   |   7423 | IT        | Beryl Systems |
+| NULL     |   NULL | Marketing | Beryl Systems |
+| Aman     |  15000 | HR        | Wipro         |
+| Rahul    |   6250 | HR        | Wipro         |
+| Amar     |  18000 | Finance   | Wipro         |
+| NULL     |   NULL | NULL      | HCL           |
+| NULL     |   NULL | NULL      | Google        |
++----------+--------+-----------+---------------+
+
+
+
+->change the position of column
+
+mysql> ALTER TABLE employee_tbl MODIFY dep_id INT AFTER salary;
+Query OK, 3 rows affected (0.34 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_tbl;
++--------+----------+------------+----------------+--------+--------+
+| emp_id | emp_name | mobileno   | emailId        | salary | dep_id |
++--------+----------+------------+----------------+--------+--------+
+|      1 | Alam     | 9999966677 | alam@gmail.com |  10000 |      1 |
+|      2 | Aman     | 9999966688 | aman@gmail.com |  15000 |      2 |
+|      3 | Amar     | 9999966000 | amar@gmail.com |  18000 |      3 |
++--------+----------+------------+----------------+--------+--------+
+
+-> change data type of column.
+
+mysql> ALTER TABLE employee_tbl MODIFY mobileno varchar(11);
+Query OK, 3 rows affected (0.32 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+
+-Unique KEY
+
+mysql> ALTER TABLE employee_tbl ADD UNIQUE KEY(emailId);
+ERROR 1062 (23000): Duplicate entry 'aman@gmail.com' for key 'emailId'
+
+mysql> update employee_tbl set emailId="amar@gmail.com" where emp_id=3;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> ALTER TABLE employee_tbl ADD UNIQUE KEY(emailId);
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+->Sql subqueries:-
+- Sql subqueries using using SELECT statement.
+
+1)get highest salary of employees.
+mysql> select emp_name, salary from employee_tbl where salary = (select MAX(salary) from employee_tbl);
+
++----------+--------+
+| emp_name | salary |
++----------+--------+
+| Amar     |  18000 |
++----------+--------+
+1 row in set (0.00 sec)
+
+2)get second highest salary of employees.
+
+mysql> select emp_name, salary from employee_tbl where salary = (select MAX(salary) from employee_tbl where salary<(select MAX(salary) from employee_tbl ));
+
++----------+--------+
+| emp_name | salary |
++----------+--------+
+| Aman     |  15000 |
++----------+--------+
+1 row in set (0.00 sec)
+
+
+->create copy of table for backup.
+
+mysql> select * from employee_tbl_bkp;
++--------+----------+------+------------+------------------+--------+--------+
+| emp_id | emp_name | age  | mobileno   | emailId          | salary | dep_id |
++--------+----------+------+------------+------------------+--------+--------+
+|      1 | Alam     |   33 | 9999966677 | alam@gmail.com   |  10000 |      1 |
+|      2 | Aman     |   23 | 9999966688 | aman@gmail.com   |  15000 |      2 |
+|      3 | Amar     |   25 | 9999966000 | amar@gmail.com   |  18000 |      3 |
+|      4 | Rakesh   |   29 | 9800000880 | rakesh@gmail.com |  12000 |      3 |
+|      5 | Rahul    |   26 | 9800000840 | rahul@gmail.com  |  16000 |      2 |
+|      6 | vikash   |   28 | 9800004840 | vikash@gmail.com |  19000 |      1 |
++--------+----------+------+------------+------------------+--------+--------+
+
+->Sql Subquereis using UPDATE query.
+
+mysql> update employee_tbl SET salary=salary*0.25 where age IN(select age from employee_tbl_bkp where age>25 ); 
+Query OK, 4 rows affected (0.05 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from employee_tbl;
++--------+----------+------+------------+------------------+--------+--------+
+| emp_id | emp_name | age  | mobileno   | emailId          | salary | dep_id |
++--------+----------+------+------------+------------------+--------+--------+
+|      1 | Alam     |   33 | 9999966677 | alam@gmail.com   |   2500 |      1 |
+|      2 | Aman     |   23 | 9999966688 | aman@gmail.com   |  15000 |      2 |
+|      3 | Amar     |   25 | 9999966000 | amar@gmail.com   |  18000 |      3 |
+|      4 | Rakesh   |   29 | 9800000880 | rakesh@gmail.com |   3000 |      3 |
+|      5 | Rahul    |   26 | 9800000840 | rahul@gmail.com  |   4000 |      2 |
+|      6 | vikash   |   28 | 9800004840 | vikash@gmail.com |   4750 |      1 |
++--------+----------+------+------------+------------------+--------+--------+
+6 rows in set (0.00 sec)
+
+->Subquereis using DELETE query. 
+
+mysql> DELETE from employee_tbl where age IN(select age from employee_tbl_bkp where age>28 );
+Query OK, 2 rows affected (0.05 sec)
+
+mysql> select * from employee_tbl;
++--------+----------+------+------------+------------------+--------+--------+
+| emp_id | emp_name | age  | mobileno   | emailId          | salary | dep_id |
++--------+----------+------+------------+------------------+--------+--------+
+|      2 | Aman     |   23 | 9999966688 | aman@gmail.com   |  15000 |      2 |
+|      3 | Amar     |   25 | 9999966000 | amar@gmail.com   |  18000 |      3 |
+|      5 | Rahul    |   26 | 9800000840 | rahul@gmail.com  |   6250 |      2 |
+|      6 | vikash   |   28 | 9800004840 | vikash@gmail.com |   7423 |      1 |
++--------+----------+------+------------+------------------+--------+--------+
+
+
+-> Limit function:
+
+mysql> select * from employee_tbl LIMIT 3;
++--------+----------+------+------------+-----------------+--------+--------+
+| emp_id | emp_name | age  | mobileno   | emailId         | salary | dep_id |
++--------+----------+------+------------+-----------------+--------+--------+
+|      2 | Aman     |   23 | 9999966688 | aman@gmail.com  |  15000 |      2 |
+|      3 | Amar     |   25 | 9999966000 | amar@gmail.com  |  18000 |      3 |
+|      5 | Rahul    |   26 | 9800000840 | rahul@gmail.com |   6250 |      2 |
++--------+----------+------+------------+-----------------+--------+--------+
+
+->order by Limit function :
+
+mysql> select * from employee_tbl ORDER BY salary LIMIT 3;
++--------+----------+------+------------+------------------+--------+--------+
+| emp_id | emp_name | age  | mobileno   | emailId          | salary | dep_id |
++--------+----------+------+------------+------------------+--------+--------+
+|      5 | Rahul    |   26 | 9800000840 | rahul@gmail.com  |   6250 |      2 |
+|      6 | vikash   |   28 | 9800004840 | vikash@gmail.com |   7423 |      1 |
+|      2 | Aman     |   23 | 9999966688 | aman@gmail.com   |  15000 |      2 |
++--------+----------+------+------------+------------------+--------+--------+
+
+->Limit function using 2 arguments :
+
+mysql> select * from employee_tbl ORDER BY salary LIMIT 2,5;
++--------+----------+------+------------+----------------+--------+--------+
+| emp_id | emp_name | age  | mobileno   | emailId        | salary | dep_id |
++--------+----------+------+------------+----------------+--------+--------+
+|      2 | Aman     |   23 | 9999966688 | aman@gmail.com |  15000 |      2 |
+|      3 | Amar     |   25 | 9999966000 | amar@gmail.com |  18000 |      3 |
++--------+----------+------+------------+----------------+--------+--------+
+
+
+
+
+
