@@ -1,0 +1,271 @@
+
+->Database Tables with inserted data.
+
+1)Patient table 
+
+mysql> select * from patient_tbl;
++------+-----------+-----+--------+--------+------------+------------+--------------+--------+------+
+| p_id | name      | age | weight | gender | address    | phoneno    | disease      | doc_id | n_id |
++------+-----------+-----+--------+--------+------------+------------+--------------+--------+------+
+| p001 | Rohit     |  22 |     65 | Male   | Rohini     | 2147483647 | Ear pain     | d001   | n001 |
+| p002 | Raman     |  25 |     68 | Male   | laxminagar | 2147483647 | heart attack | d002   | n002 |
+| p003 | deepti    |  25 |     55 | feale  | karol bagh |  989999855 | heart pain   | d003   | n003 |
+| p004 | deepshika |  27 |     56 | feale  | karol bagh |  989999855 | eye pain     | d001   | n001 |
+| p006 | Rohit     |  22 |     65 | Male   | Rohini     |  989999888 | Dengu        | d001   | n001 |
++------+-----------+-----+--------+--------+------------+------------+--------------+--------+------+
+
+2)Doctor table
+
+mysql> select * from doctor_tbl;
++------+----------+------------+-------------------+--------+
+| d_id | doc_name | phone_no   | email_Id          | dep_id |
++------+----------+------------+-------------------+--------+
+| d001 | Abhinav  | 2147483647 | abhinav@gmail.com | dp01   |
+| d002 | Arnav    | 2147483647 | arnav@gmail.com   | dp01   |
+| d003 | Sanjay   |  998999977 | sanjay@gmail.com  | dp02   |
+| d004 | Ravi     |  998999989 | ravi@gmail.com    | dp02   |
++------+----------+------------+-------------------+--------+
+
+3)Department table
+
+mysql> select * from department_tbl;
++--------+------------+--------------------------------------------------+
+| dep_id | dep_name   | description                                      |
++--------+------------+--------------------------------------------------+
+| dp01   | Cardiology | This department is for heart and circulation     |
+| dp02   | Eye        | This department is for eye checkup and operation |
+| dp03   | Ear        | This department is for ear checkup and operation |
+| dp04   | Medicine   | It is for Fever and Headache                     |
+| dp05   | Dental     | It is for dental                                 |
++--------+------------+--------------------------------------------------+
+
+
+4)Nurse table
+
+mysql> select * from nurse_tbl;
++------+---------+-------------------+
+| n_id | name    | email_id          |
++------+---------+-------------------+
+| n001 | Gita    | gita@gmail.com    |
+| n002 | Reetu   | reetu@gmail.com   |
+| n003 | Ram     | ram@gmail.com     |
+| n004 | akansha | akansha@gmail.com |
+| n005 | deepak  | deepak@gmail.com  |
++------+---------+-------------------+
+
+5)Lab table
+
+mysql> select * from lab_tbl;
++--------+------+--------+------+----------+
+| lab_no | p_id | weight | d_id | category |
++--------+------+--------+------+----------+
+| l001   | p001 |     65 | d001 | Negative |
+| l002   | p002 |     68 | d002 | POSITIVE |
+| l003   | p006 |     68 | d001 | POSITIVE |
+| l004   | p001 |     68 | d001 | Negative |
+| l005   | p003 |     55 | d003 | Positive |
++--------+------+--------+------+----------+
+
+6)Inpatient table
+
+mysql> select * from inpatient_tbl;
++------+---------+---------------------+---------------------+---------+--------+
+| p_id | room_no | date_of_adm         | date_of_dis         | advance | lab_no |
++------+---------+---------------------+---------------------+---------+--------+
+| p002 | r001    | 2016-10-05 12:20:59 | 2016-10-30 10:59:59 |       5 | l003   |
+| p003 | r002    | 2016-08-06 11:20:59 | 2016-09-09 10:59:59 |      10 | l005   |
+| p006 | r004    | 2016-08-08 11:20:59 | 2016-09-01 10:59:59 |      12 | l003   |
++------+---------+---------------------+---------------------+---------+--------+
+
+7)outpatient table
+
+mysql> select * from outpatient_tbl;
++------+---------------------+--------+
+| p_id | date                | lab_no |
++------+---------------------+--------+
+| p001 | 2016-08-08 11:20:59 | l004   |
++------+---------------------+--------+
+
+8)room table
+
+mysql> select * from room_tbl;
++---------+-----------+---------+
+| room_no | room_type | status  |
++---------+-----------+---------+
+| r001    | AC        | Avl 02  |
+| r002    | NON AC    | Avl 05  |
+| r003    | Emergency | Not Avl |
+| r004    | General   | Avl 10  |
++---------+-----------+---------+
+
+2)Bill table
+
+mysql> select * from bill_tbl;
++---------+------+--------------+---------------+-----------------+-------------+---------+------------+
+| bill_no | p_id | patient_type | doctor_charge | medicine_charge | room_charge | advance | lab_charge |
++---------+------+--------------+---------------+-----------------+-------------+---------+------------+
+| b001    | p002 | inpatient    |          1000 |             500 |        3000 |    5000 |        500 |
+| b002    | p001 | outpatient   |          1000 |             200 |           0 |       0 |        500 |
+| b003    | p003 | inpatient    |          1000 |            1000 |        5000 |    6000 |       1000 |
+| b004    | p006 | outpatient   |          1000 |            1000 |        4000 |    4000 |       1000 |
++---------+------+--------------+---------------+-----------------+-------------+---------+------------+
+
+
+->Record of the patients with doctor appointment
+
+mysql> select p.name, p.age, p.gender, p.disease, d.doc_name 
+from patient_tbl p INNER JOIN doctor_tbl d 
+ON p.doc_id=d.d_id; 
++-----------+-----+--------+--------------+----------+
+| name      | age | gender | disease      | doc_name |
++-----------+-----+--------+--------------+----------+
+| Rohit     |  22 | Male   | Ear pain     | Abhinav  |
+| deepshika |  27 | feale  | eye pain     | Abhinav  |
+| Rohit     |  22 | Male   | Dengu        | Abhinav  |
+| Raman     |  25 | Male   | heart attack | Arnav    |
+| deepti    |  25 | feale  | heart pain   | Sanjay   |
++-----------+-----+--------+--------------+----------+
+
+->Record of the patients with doctor name and their department
+
+mysql> select p.name, p.age, p.gender, p.disease, d.doc_name, dp.dep_name 
+from patient_tbl p INNER JOIN doctor_tbl d 
+ON p.doc_id=d.d_id INNER JOIN department_tbl dp 
+ON d.dep_id=dp.dep_id;
++-----------+-----+--------+--------------+----------+------------+
+| name      | age | gender | disease      | doc_name | dep_name   |
++-----------+-----+--------+--------------+----------+------------+
+| Rohit     |  22 | Male   | Ear pain     | Abhinav  | Cardiology |
+| deepshika |  27 | feale  | eye pain     | Abhinav  | Cardiology |
+| Rohit     |  22 | Male   | Dengu        | Abhinav  | Cardiology |
+| Raman     |  25 | Male   | heart attack | Arnav    | Cardiology |
+| deepti    |  25 | feale  | heart pain   | Sanjay   | Eye        |
++-----------+-----+--------+--------------+----------+------------+
+
+->Record of the patients with doctor appointment using LEFT JOIN
+
+mysql> select p.name, p.age, p.gender, p.disease, d.doc_name 
+from patient_tbl p LEFT JOIN doctor_tbl d 
+ON p.doc_id=d.d_id; 
+
+| name      | age | gender | disease      | doc_name |
++-----------+-----+--------+--------------+----------+
+| Rohit     |  22 | Male   | Ear pain     | Abhinav  |
+| Raman     |  25 | Male   | heart attack | Arnav    |
+| deepti    |  25 | feale  | heart pain   | Sanjay   |
+| deepshika |  27 | feale  | eye pain     | Abhinav  |
+| Rohit     |  22 | Male   | Dengu        | Abhinav  |
++-----------+-----+--------+--------------+----------+
+
+->Record of the patients with doctor name and department LEFT JOIN
+
+mysql> select p.name, p.age, p.gender, p.disease, d.doc_name, dp.dep_name
+from patient_tbl p LEFT JOIN doctor_tbl d 
+ON p.doc_id=d.d_id LEFT JOIN department_tbl dp 
+ON d.dep_id=dp.dep_id;
+
++-----------+-----+--------+--------------+----------+------------+
+| name      | age | gender | disease      | doc_name | dep_name   |
++-----------+-----+--------+--------------+----------+------------+
+| Rohit     |  22 | Male   | Ear pain     | Abhinav  | Cardiology |
+| Raman     |  25 | Male   | heart attack | Arnav    | Cardiology |
+| deepti    |  25 | feale  | heart pain   | Sanjay   | Eye        |
+| deepshika |  27 | feale  | eye pain     | Abhinav  | Cardiology |
+| Rohit     |  22 | Male   | Dengu        | Abhinav  | Cardiology |
++-----------+-----+--------+--------------+----------+------------+
+
+
+->Record of the patients with doctor appointment using RIGHT JOIN
+
+mysql> select p.name, p.age, p.gender, p.disease, d.doc_name 
+from patient_tbl p RIGHT JOIN doctor_tbl d 
+ON p.doc_id=d.d_id; 
++-----------+------+--------+--------------+----------+
+| name      | age  | gender | disease      | doc_name |
++-----------+------+--------+--------------+----------+
+| Rohit     |   22 | Male   | Ear pain     | Abhinav  |
+| deepshika |   27 | feale  | eye pain     | Abhinav  |
+| Rohit     |   22 | Male   | Dengu        | Abhinav  |
+| Raman     |   25 | Male   | heart attack | Arnav    |
+| deepti    |   25 | feale  | heart pain   | Sanjay   |
+| NULL      | NULL | NULL   | NULL         | Ravi     |
++-----------+------+--------+--------------+----------+
+
+->Record of the patients with doctor name and department RIGHT JOIN
+
+mysql> select p.name, p.age, p.gender, p.disease, d.doc_name, dp.dep_name 
+from patient_tbl p RIGHT JOIN doctor_tbl d 
+ON p.doc_id=d.d_id RIGHT JOIN department_tbl dp 
+ON d.dep_id=dp.dep_id;
++-----------+------+--------+--------------+----------+------------+
+| name      | age  | gender | disease      | doc_name | dep_name   |
++-----------+------+--------+--------------+----------+------------+
+| Rohit     |   22 | Male   | Ear pain     | Abhinav  | Cardiology |
+| deepshika |   27 | feale  | eye pain     | Abhinav  | Cardiology |
+| Rohit     |   22 | Male   | Dengu        | Abhinav  | Cardiology |
+| Raman     |   25 | Male   | heart attack | Arnav    | Cardiology |
+| deepti    |   25 | feale  | heart pain   | Sanjay   | Eye        |
+| NULL      | NULL | NULL   | NULL         | Ravi     | Eye        |
+| NULL      | NULL | NULL   | NULL         | NULL     | Ear        |
+| NULL      | NULL | NULL   | NULL         | NULL     | Medicine   |
+| NULL      | NULL | NULL   | NULL         | NULL     | Dental     |
++-----------+------+--------+--------------+----------+------------+
+
+->Lab report of the patients
+
+mysql> select l.lab_no, l.p_id, l.weight,l.category, d.doc_name 
+from lab_tbl l INNER JOIN doctor_tbl d 
+ON l.d_id=d.d_id ;  
+
++--------+------+--------+----------+----------+
+| lab_no | p_id | weight | category | doc_name |
++--------+------+--------+----------+----------+
+| l001   | p001 |     65 | Negative | Abhinav  |
+| l003   | p006 |     68 | POSITIVE | Abhinav  |
+| l004   | p001 |     68 | Negative | Abhinav  |
+| l002   | p002 |     68 | POSITIVE | Arnav    |
+| l005   | p003 |     55 | Positive | Sanjay   |
++--------+------+--------+----------+----------+
+
+->Inpatient record 
+
+mysql> select i.p_id, i.room_no, i.date_of_adm, i.date_of_dis, l.lab_no, l.d_id, l.category 
+from inpatient_tbl i INNER  JOIN lab_tbl l 
+ON i.lab_no=l.lab_no;  
+
++------+---------+---------------------+---------------------+--------+------+----------+
+| p_id | room_no | date_of_adm         | date_of_dis         | lab_no | d_id | category |
++------+---------+---------------------+---------------------+--------+------+----------+
+| p002 | r001    | 2016-10-05 12:20:59 | 2016-10-30 10:59:59 | l003   | d001 | POSITIVE |
+| p006 | r004    | 2016-08-08 11:20:59 | 2016-09-01 10:59:59 | l003   | d001 | POSITIVE |
+| p003 | r002    | 2016-08-06 11:20:59 | 2016-09-09 10:59:59 | l005   | d003 | Positive |
++------+---------+---------------------+---------------------+--------+------+----------+
+
+->outpatient record
+
+mysql> select o.p_id, o.date, l.lab_no, l.d_id, l.category 
+from outpatient_tbl o INNER  JOIN lab_tbl l 
+ON o.lab_no=l.lab_no;  
+
++------+---------------------+--------+------+----------+
+| p_id | date                | lab_no | d_id | category |
++------+---------------------+--------+------+----------+
+| p001 | 2016-08-08 11:20:59 | l004   | d001 | Negative |
++------+---------------------+--------+------+----------+
+
+->Bill record of the patients
+
+mysql> select b.bill_no, p.p_id, p.name, p.address, p.doc_id, b.patient_type, b.doctor_charge, b.medicine_charge, b.room_charge, b.advance, b.lab_charge 
+from bill_tbl b INNER JOIN patient_tbl p 
+ON b.p_id=p.p_id;
+
++---------+------+--------+------------+--------+--------------+---------------+-----------------+-------------+---------+------------+
+| bill_no | p_id | name   | address    | doc_id | patient_type | doctor_charge | medicine_charge | room_charge | advance | lab_charge |
++---------+------+--------+------------+--------+--------------+---------------+-----------------+-------------+---------+------------+
+| b001    | p002 | Raman  | laxminagar | d002   | inpatient    |          1000 |             500 |        3000 |    5000 |        500 |
+| b002    | p001 | Rohit  | Rohini     | d001   | outpatient   |          1000 |             200 |           0 |       0 |        500 |
+| b003    | p003 | deepti | karol bagh | d003   | inpatient    |          1000 |            1000 |        5000 |    6000 |       1000 |
+| b004    | p006 | Rohit  | Rohini     | d001   | outpatient   |          1000 |            1000 |        4000 |    4000 |       1000 |
++---------+------+--------+------------+--------+--------------+---------------+-----------------+-------------+---------+------------+
+
+
