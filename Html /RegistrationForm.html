@@ -1,0 +1,39 @@
+<html>
+	<head>
+	 <script type="text/javascript" src="RegForm.js">
+		
+		</script>
+	</head>
+	<body>
+		<div style="margin-left:200px; margin-right:200px; width:800px; margin-top:30px; border:1px solid grey;">  
+		     <div style="margin-left:150px;margin-top:70px;margin-bottom:70px;">
+              <div style="margin-bottom:40px; border:1px solid red; width:365px; padding:5px; "><h2>Student Registration form</h2></div>
+              
+                <form onsubmit="return formValidation()" method="post" action="javascript:void(0);">
+                 <div>First Name*:  &nbsp&nbsp&nbsp&nbsp&nbsp<input type ="text" name="fname" id="fname" /><span id="fnameError"></span></div>
+                 <div>Last Name*:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type ="text" name="lname" id="lname"/><span id="lnameError"></span></div>
+                 <div>Mobile NO*.: &nbsp&nbsp&nbsp&nbsp&nbsp<input type ="number" name="mobile" style="width:230px;" id="mobile"/><span id="mobileError"></span></div>
+                 <div>Email Id*:  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type ="email" name="email" id="email"/><span id="emailError"></span></div>
+                 <div>DOB*: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type ="datetime-local" name="dob" id="dob"/><span id="dobError"></span></div>
+                  <div>Gender*: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type ="radio" name="g"/>Male <input type ="radio" name="g"/ id="gender">Female <span id="genderError"></span></div>
+                 <div>Address*:   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<textarea name="address" rows="5" style="width:230px;" id="address"></textarea><span id="addressError"></span></div>
+                 <div>Course*:    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<select style="width:230px;" id="course"/><span id="courseError"></span>
+                  <option>B.Tech</option>
+                  <option>BCA</option>
+                  <option>MCA</option>
+                  <option>MBA</option>
+                  </select>
+                  </div>
+                  <div></div>
+                  <div></div>
+                 <div style="margin-top:20px;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type ="submit" name="submit" value= "Submit" style="width:120px;"  /> <span id="submitError"></span><input type ="Reset" name="reset" value= "Reset" style="width:120px;"/></div>
+                              
+             </form>
+				</div>
+        </div>
+		 
+	</body>
+</html>
+		  
+		  
+		  
