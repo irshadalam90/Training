@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<!--<p>Access Html element using getElementByTagName</p>-->
+		<div class="hello">Access Html element using getElementByClassName</div>
+		<p id="p_id"></p> 
+		<p><b>change content of h1 element</b></p>
+		<h1 id="header">Old Header</h1>
+		<p id="p_color">changing color of html element</p>
+		<div id="div_color">div backgroud color changed.</div>
+
+		<h1 id="id1">change text color</h1>
+
+		<button type="button" 
+		onclick="document.getElementById('id1').style.color = 'red'">
+		Click Me!</button>
+		
+		
+		<script>
+		    x=document.getElementsByTagName("p");
+		    y=document.getElementsByClassName("hello");
+			//document.getElementById("p_id").innerHTML='Access Html element using getElementById:'+" "+x[0].innerHTML;
+		    document.getElementById("p_id").innerHTML='Access Html element using getElementById:'+" "+y[0].innerHTML;
+		    var element = document.getElementById("header");
+            element.innerHTML = "New Header";
+            document.getElementById("p_color").style.color = "red";
+            document.getElementById("div_color").style.background = "blue";
+		</script>
+		    
+	</body>
+
+</html>
