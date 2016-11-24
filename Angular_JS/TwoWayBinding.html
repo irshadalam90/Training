@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app = "myModule">
+    <head>
+        <script src="angular.js"></script>
+        <script src="TwoWayBinding.js"></script>
+    </head>
+      
+    <body>
+    <div ng-controller = "myController">
+  		<!-- <div><input type = "text" ng-model="message"></div>
+        <div>{{ message }}</div> -->
+	<table>
+		<tr>
+			<td>First Name</td>
+			<td><input type="text" ng-model="employee.firstName"></td>
+		</tr>
+		<tr>	
+			<td>Last Name</td>
+			<td><input type="text" ng-model="employee.lastName"></td>
+		</tr>	
+		<tr>
+			<td>Gender</td>
+			<td><input type="text" ng-model="employee.gender"></td>
+		</tr>	
+		<tr>
+			<td>Salary</td>
+			<td><input type="text" ng-model="employee.salary"></td>
+		</tr>
+
+		<tr>
+			<td>First Name</td>
+			<td>{{ employee.firstName }}</td>
+		</tr>
+		<tr>	
+			<td>Last Name</td>
+			<td>{{ employee.lastName }}</td>
+		</tr>	
+		<tr>
+			<td>Gender</td>
+			<td>{{ employee.gender }}</td>
+		</tr>	
+		<tr>
+			<td>Salary</td>
+			<td>{{ employee.salary }}</td>
+		</tr>
+
+	</table>
+        
+    </div>
+    
+    </body>
+
+</html>
