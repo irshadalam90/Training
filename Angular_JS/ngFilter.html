@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app = "myModule">
+    <head>
+        <script src="angular.js"></script>
+        <script src="ngFilter.js"></script>
+        <script src="ngFilter.css"></script>
+    </head>
+      
+    <body>
+    <div ng-controller = "myController">
+  		
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Date Of Birth</th>	
+			<th>Gender</th>
+			<th>Salary</th>
+		</tr>
+
+		<tr ng-repeat = "employee in employees">
+			<td>{{ employee.name | uppercase }}</td>
+			<td>{{ employee.dateOfBirth | date: dd/MM/yyyy }}</td>
+			<td>{{ employee.gender | lowercase}}</td>
+			<td>{{ employee.salary | currency }}</td>
+		</tr>
+
+	</table>
+        
+    </div>
+    
+    </body>
+
+</html>

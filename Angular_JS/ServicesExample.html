@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app = "myModule">
+    <head>
+        <script src="angular.js"></script>
+        <script src="ServicesExample.js"></script>
+        <script src="https://code.angularjs.org/1.6.0-rc.1/angular-messages.js"></script>
+    </head>
+      
+    <body>
+  
+  		<div ng-controller="myController">
+            <div>This is a Services Examples !</div>
+            <br/>
+            <br/>
+            
+    <form name="myForm">
+    <label>
+      Enter text:
+      <input type="email" ng-model="field" name="myField" required maxlength="15" />
+    </label>
+    <div ng-messages="myForm.myField.$error" role="alert">
+      <div ng-message="required">Please enter a value for this field.</div>
+      <div ng-message="email">This field must be a valid email address.</div>
+      <div ng-message="maxlength">This field can be at most 15 characters long.</div>
+    </div>
+  </form>
+     </div>
+    
+    
+    </body>
+
+</html>
