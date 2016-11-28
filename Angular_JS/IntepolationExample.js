@@ -1,17 +1,5 @@
-app.factory('stringService',function(){
-    return{
-        processString: function(input){
-            if(!input){
-                return output;
-            }
-            var output = "";
-            for(var i=0; i<input.length;i++){
-                if(i>0 && input[i] == input[i].toUpperCase()){
-                    output = output + " ";
-                }
-                output = output + input[i];
-            }
-            return output;
-        }
-    };
+var myApp = angular.module("myModule",[]);
+
+myApp.controller("myController",function($scope){
+	$scope.name = "irshad";
 });

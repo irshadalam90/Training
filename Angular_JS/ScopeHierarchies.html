@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+    <head>
+        <script src="angular.js"></script>
+        <script src="ScopeHierarchies.js"></script>
+    </head>
+      
+    <body>
+    <div ng-controller="GreetController" >
+        angular.element("div").scope()
+        Hello {{ name }}   
+        
+    </div>
+  		
+        <div ng-controller="listController">
+            <ol>
+                <li ng-repeat = "name in names">{{ name }} form {{ department }}</li>
+            </ol>
+        
+        </div>
+        
+        
+       <!-- <div ng-controller="myController">
+            Parent controller: {{ name }}<br/>
+            child1: {{ name1 }}<br/>
+            child2: {{ name2 }}
+        </div>
+        
+        <div ng-controller="myController1">
+           
+            child1: {{ name1 }}<br/>
+            Parent controller: {{ name }}<br/>
+            child2: {{ name2 }}
+        </div>
+        
+        <div ng-controller="myController2">
+            child2: {{ name2 }}<br/>
+              Parent controller: {{ name }}<br/>
+            child1: {{ name1 }}
+        </div>
+    -->
+    
+    </body>
+
+</html>
