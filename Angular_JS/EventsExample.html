@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="angular.min.js"></script>
+        <script src="EventsExample.js"></script>
+    </head>
+    
+    <body ng-app="myApp" ng-controller="myCtrl">
+        <div>
+            <h1 ng-mousemove="ovrcount = ovrcount + 1">Mouse Over Me!</h1>
+            <h2>{{ ovrcount }}</h2>
+        </div>
+        
+        <div>
+            <h1 ng-click="clkcount = clkcount + 1">Click Me!</h1>
+            <h2>{{ clkcount }}</h2>
+        </div>
+        
+        <div>
+            <button ng-mouseup="upcount = upcount + 1">Mouse up!</button>
+            <h2>{{ upcount }}</h2>
+        </div>
+        
+        <div>
+            <button ng-mousedown="dwncount = dwncount + 1">Mouse Down!</button>
+            <h2>{{ dwncount }}</h2>
+        </div>
+        
+         
+        <div>
+            <button ng-mouseenter="mentercount = mentercount + 1">Mouse Enter!</button>
+            <h2>{{ mentercount }}</h2>
+        </div>
+        
+        
+        <div>
+            <button ng-dblclick="dblclkcount = dblclkcount + 1">Double Click!</button>
+            <h2>{{ dblclkcount }}</h2>
+        </div>
+        
+        <div>
+            <button ng-click="myFunc()">Click Me!</button>
+            <div ng-show="showMe">
+                <h1>Menu:</h1>
+                <div>Pizza</div>
+                <div>Pasta</div>
+                <div>Pesce</div>
+            </div>
+            <p>Click the button to show/hide the menu.</p>
+        </div>
+        
+        <div><input type="text" ng-blur="blur()" ng-focus="focus()" name="text" placeholder="Enter text"/>
+            <span>{{text}}</span>
+            
+         </div><br/>
+        
+        <div>
+        <input type="checkbox" ng-click="myFunc2()" ng-model="checked"/>click to check box to show/hied
+        <div ng-hide="hideMe">
+                <h1>Menu:</h1>
+                <div>Pizza</div>
+                <div>Pasta</div>
+                <div>Pesce</div>
+            </div>
+
+        </div>    
+        
+
+</body>
+</html>

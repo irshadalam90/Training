@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<htm>
+    <head>
+        <script src="angular.js"></script>
+    </head>
+    <script>
+        myApp = angular.module("myModule",[])
+                        .controller("FormController", function($scope){
+           
+        });
+    </script>
+    <body ng-app="myModule" >
+        <form name="myForm" ng-controller = "FormController">
+            <label>UserName: <input type="text" name="uname" ng-model = "uname" required></label>
+            <div role="alert">
+                <span class="error" ng-show="myForm.uname.$error.required">user name is required!</span>
+            </div>
+            
+             <label>Email Id: <input type="email" name="email" ng-model = "email" Required></label>
+            <div role="alert">
+                <span class="error" ng-show="myForm.email.$error.required">email id is required!</span>
+                <span class="error" ng-show="myForm.email.$error.email">Not valid email</span>
+
+            </div>
+            
+             <label>Mobile: <input type="number" name="mobile" ng-model = "mobile" ngMinlength="10" ngMaxlength="10" Required></label>
+            <div role="alert">
+                <span class="error" ng-show="myForm.mobile.$error.required">mobile number is required!</span>
+                <span class="error" ng-show="myForm.mobile.$error.number">valid mobile number enter</span>
+
+            </div>
+            
+             <label>Date Of Birth: <input type="date" id="dob" name="dob" ng-model="dob"
+               placeholder="yyyy-MM-dd" min="1980-01-01" max="2016-12-31" required /></label>
+              <div role="alert">
+                <span class="error" ng-show="myForm.dob.$error.required">Date of birth required!</span>
+                <span class="error" ng-show="myForm.dob.$error.date">Not a valid date!</span>
+               </div>
+            
+             <label>Gender: <input type = "radio" name="gender" ng-model = "gender" Required>Male <input type = "radio" name="gender" ng-model = "gender" Required>Female</label>
+            <div >
+                
+            </div>
+            
+             <label>Address:<TextArea rows="5" cols="15" name="address" ng-model="address" ></TextArea> </label>
+            <div role="alert">
+                <span class="error" ng-show="myForm.address.$error.required">Required!</span>
+            </div>
+            
+            
+            <label><input type="button" name="btn" value = "Submit" ng-model=""> </label>
+            <label><input type="button" name="btn" value = "Reset" ng-model=""> </label>
+        </form>
+    </body>
+</htm>
