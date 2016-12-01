@@ -1,8 +1,10 @@
 angular.module("myApp", [])
   .component("helloWorld",{
     templateUrl: 'Component_Template.html',
-    bindings:{name:'@'},
+    bindings:{name:'@',email:'@',mobile:'@'},
     controller: function(){
-        this.myName='Alam';    
+        this.name=name;    
+        this.email=email; 
+        this.mobile=mobile; 
     }
   });

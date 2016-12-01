@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="angular.min.js"></script>
+        <script src="ListExample.js"></script>
+        <link rel ="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        
+    </head>
+    <body>
+        <div ng-app="myApp" ng-controller="myController"> 
+            <div><input type="text" name="name" ng-model="name" placeholder="Enter name" style="margin-top:20px; margin-left:20px; width:300px;"/>
+            <input type="button" name="btn" value="ADD " ng-click="addName()"/>
+             </div>
+            <div style="margin-top:20px; margin-left:20px;">
+            <ul class="list-group" style="width:300px;" ng-repeat="name in nameList">
+                <li class="list-group-item">{{ name }} <div class="glyphicon glyphicon-remove" ng-click="removeName($index)" style="text-align:right;"></div></li>
+                
+            </ul>
+            </div>
+            
+             
+        </div>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
