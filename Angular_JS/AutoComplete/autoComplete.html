@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="angular.js"></script>
+       <!-- <script src= "css/bootstrap.css"></script>-->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+        <script src="ngAutoComplete.js"></script>
+       
+        <script src= "autoComplete.js"></script>
+    </head>
+    <body ng-app="myModule">
+        <div style="margin:200px; text-align:center;" >
+            <div><img src="google_2015_logo_detail.png" style="height:100px; width:300px;"></div>
+            <div style="margin-top:20px;">
+                <input type="text" ng-autocomplete ng-model="autocomplete" options="options" details="details" placeholder="Search Google or type URL" style = "height:30px; width:650px;" />
+            </div>
+        </div>
+    </body>
+</html>
