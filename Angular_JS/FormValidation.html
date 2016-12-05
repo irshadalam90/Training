@@ -8,7 +8,7 @@
 
 <h2>Validation Example</h2>
 
-<form ng-controller="validateCtrl" name="myForm" ng-submit="submitForm()" novalidate>
+<form ng-controller="validateCtrl" name="myForm" ng-submit="submitForm()" >
 
 <p>Username:<br>
 <input type="text" name="user" ng-model="user" required>
@@ -24,6 +24,15 @@
 <span ng-show="myForm.email.$error.email">Invalid email address.</span>
 </span>
 </p>
+
+
+ <div style="margin-top:40px;">
+                    <input type="email" name="email" ng-model="user.email" class="form-control" placeholder="Enter email Id" required>
+                    <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                        <span ng-show="myForm.email.$error.required">Email is required.</span>
+                        <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+                    </span>
+               </div>
 
 <p>
 <input type="submit" >
