@@ -1,0 +1,75 @@
+
+
+
+        <div class="mrg-set">
+            
+            <form name="myForm">
+            <div class="inp-set">
+                
+                <input type="text" name="uname" placeholder="Enter Name" class="form-control" ng-model="name" required/> 
+                <span style="color:red" ng-show="myForm.uname.$dirty && myForm.uname.$invalid">
+                    <span ng-show="myForm.uname.$error.required">Username is required.</span>
+                </span>
+            </div>
+            
+            <div class="inp-set">
+                <input type="email" name="email" placeholder="Enter email" class="form-control" ng-model="email" required/>
+                <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                    <span ng-show="myForm.email.$error.required">Email is required.</span>
+                    <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+                </span>    
+            </div>
+            
+            <div class="inp-set">
+                <input type="password" name="password" placeholder="Enter password" class="form-control" ng-model="password" ng-model="password" ng-minlength="8" ng-maxlenhth="20" required/>
+                <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+                    <span ng-show="myForm.password.$error.required">password is required.</span>
+                    <span ng-show="myForm.password.$error.minlength">password must be atleast 8 character</span>
+                </span>    
+             </div>
+            
+            <div class="inp-set">
+                <input type="number" name="mobile" placeholder="Enter Mobile Number" class="form-control" ng-model="mobile"/> 
+            </div>
+            
+            <div class="inp-set">
+                <select class="form-control" ng-model="gender" placeholder="select gender" >
+                    
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+            
+            <div class="inp-set">
+                <select class="form-control" ng-model="uType">
+                    <option>User Type</option>
+                    <option>Doctor</option>
+                    <option>Patient</option>
+                    <option>Admin</option>
+                </select>
+            </div>
+            
+            
+            
+            <div class="inp-set">
+                <input type="button" value="Sign Up" class="form-control" ng-click="createUser()"/>         
+            </div>
+            
+            <div>
+                <p ng-if="message">Message: <strong>{{ message }}</strong></p>
+                <p ng-if="error">Error: <strong>{{ error }}</strong></p>
+            </div>
+            
+            
+            </form>
+            
+            
+        </div>
+        
+
+
+        
+        
+    
+        
+           
