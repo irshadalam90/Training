@@ -6,7 +6,7 @@
             <form name="myForm">
             <div class="inp-set">
                 
-                <input type="text" name="uname" placeholder="Enter Name" class="form-control" ng-model="name" required/> 
+                <input type="text" name="uname" placeholder="Enter Name" class="form-control" ng-model="profile.uname" required/> 
                 <span style="color:red" ng-show="myForm.uname.$dirty && myForm.uname.$invalid">
                     <span ng-show="myForm.uname.$error.required">Username is required.</span>
                 </span>
@@ -29,11 +29,11 @@
              </div>
             
             <div class="inp-set">
-                <input type="number" name="mobile" placeholder="Enter Mobile Number" class="form-control" ng-model="mobile"/> 
+                <input type="number" name="mobile" placeholder="Enter Mobile Number" class="form-control" ng-model="profile.mobile"/> 
             </div>
             
             <div class="inp-set">
-                <select class="form-control" ng-model="gender" placeholder="select gender" >
+                <select class="form-control" name="gender" ng-model="profile.gender" placeholder="select gender" >
                     
                     <option>Male</option>
                     <option>Female</option>
@@ -41,7 +41,7 @@
             </div>
             
             <div class="inp-set">
-                <select class="form-control" ng-model="uType">
+                <select class="form-control" name="uType" ng-model="profile.uType">
                     <option>User Type</option>
                     <option>Doctor</option>
                     <option>Patient</option>
