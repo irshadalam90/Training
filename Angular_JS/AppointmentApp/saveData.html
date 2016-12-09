@@ -5,6 +5,7 @@
         <script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
         <script src="angular-route.js"></script>
         <script src="saveData.js"></script>
+        <script src="appController.js"></script>
         
     
     </head>
@@ -25,11 +26,16 @@
 
     <button type="submit">Save Changes</button>
   </form>
-</div>
-        -->
+</div>-->
+        
         
         <div ng-controller="MyCtrl">
-            <li ng-repeat="item in list | filter:name">{{ item | json }}</li>
+            
+            <!--<li ng-repeat="item in list | filter:name">{{ item | json }}</li>-->
+            
+              <input type="text" name="name" ng-model="name"  />
+              <input type="button" value="Save" ng-click="saveData()" />                                                                        
+          
         </div>
       
        

@@ -22,35 +22,6 @@ var app = angular.module("sampleApp", ['ngRoute','firebase']);
 }]);
 
 
-
-app.controller("mainController",function($scope,$location){
-    
-    
-    
-});
-
-/*
-app.controller("homeController",function($scope,$location){
-    
-    $scope.signin = function(){
-    $location.path("/welcome");
-    }
-    
-     $scope.signup = function(){
-        $location.path("/signup" );
-    }
-});
-*/
-
-
-app.controller("welcomeCtrl",function($scope,$location){
-    
-    
-    
-});
-
-
-
 app.factory("Auth", ["$firebaseAuth",
   function($firebaseAuth) {
     return $firebaseAuth();
@@ -59,21 +30,17 @@ app.factory("Auth", ["$firebaseAuth",
 
 
 
-/*
-app.factory("Profile", ["$firebaseObject",
-  function($firebaseObject) {
-    return function(username) {
-      // create a reference to the database node where we will store our data
-      var ref = firebase.database().ref("rooms").push();
-      var profileRef = ref.child(username);
+app.controller("mainController",function($scope,$location){
+    //$scope.message="main controller";
+    
+    
+});
 
-      // return it as a synchronized object
-      return $firebaseObject(profileRef);
-    }
-  }
-]);
-*/
 
+
+app.controller("welcomeCtrl",function($scope,$location){
+    
+});
 
 
 
@@ -106,32 +73,54 @@ app.controller('homeController', ['$scope','$location','Auth',
 
 
 // and use it in our controller
-app.controller("signupController", ["$scope", "Auth","$firebaseObject",
-  function($scope, Auth,$firebaseObject) {
+app.controller("signupController", ["$scope", "Auth","$firebaseArray",
+  function($scope, Auth,$firebaseArray) {
+      
+        var ref = firebase.database().ref();
+        var UsersRef = ref.child("Users");
+        var list = $firebaseArray(UsersRef); 
+        
+       
+      
     $scope.createUser = function() {
       $scope.message = null;
       $scope.error = null;
-       var ref = firebase.database().ref();
-       $scope.profile = $firebaseObject(ref.child('Users'));
-
+        
+    var users = { "name":$scope.uname,
+                      "email":$scope.email,
+                      "password": $scope.password,
+                     "mobile":$scope.mobile,  
+                     "gender":$scope.gender, 
+                     "userType":$scope.uType
+                   };    
+        
+        
       // Create a new user
-      Auth.$createUserWithEmailAndPassword($scope.email, $scope.password)
+      Auth.$createUserWithEmailAndPassword(users.email, users.password)
         .then(function(firebaseUser) {
           $scope.message = "User created with uid: " + firebaseUser.uid;
         }).catch(function(error) {
           $scope.error = error;
         });
+        
+        
                                     
         
-      $scope.profile.$save().then(function() {
-        alert('Profile saved!');
-      }).catch(function(error) {
-        alert('Error!');
-      });
+         list.$add(users).then(function() {
+                alert('data saved!');
+            }, function(error) {
+                alert('Error!');
+            });
                                
     };
 
-   /* $scope.deleteUser = function() {
+   
+  }
+]);
+
+
+
+/* $scope.deleteUser = function() {
       $scope.message = null;
       $scope.error = null;
 
@@ -142,8 +131,5 @@ app.controller("signupController", ["$scope", "Auth","$firebaseObject",
         $scope.error = error;
       });
     };*/
-  }
-]);
-
 
 

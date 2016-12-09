@@ -26,6 +26,19 @@ app.controller("ProfileCtrl", ["$scope", "$firebaseObject",
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 app.controller("MyCtrl", ["$scope", "$firebaseArray",
   function($scope, $firebaseArray) {
     var ref = firebase.database().ref();
@@ -33,10 +46,10 @@ app.controller("MyCtrl", ["$scope", "$firebaseArray",
     var list = $firebaseArray(ref);
 
     // add an item
-    list.$add({ name: "Akash"}).then(function(){
-        var id= ref.key;
-        console.log("added record with id " + id);
-          list.$indexFor(id); // returns location in the array
+    list.$add({ name: "sanjay"}).then(function(){
+        //var id= ref.key;
+        console.log("added record with id ");
+          //list.$indexFor(id); // returns location in the array
     }).catch(function(error){
         console.log(error);
     });
@@ -50,6 +63,8 @@ app.controller("MyCtrl", ["$scope", "$firebaseArray",
         console.log(Error);
     });*/
     // make the list available in the DOM
-    $scope.list = list;
-  }
-]);
+    //$scope.list = list;
+//   }
+// ]);
+
+ 
