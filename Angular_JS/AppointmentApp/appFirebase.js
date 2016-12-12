@@ -17,9 +17,35 @@ var app = angular.module("sampleApp", ['ngRoute','firebase']);
   when('/signup',{
        templateUrl: 'signup.html',
        controller: 'signupController'
-       });
+       }).
+   when('/docAppointment',{
+       templateUrl: 'docAppointment.html',
+       controller: 'appointmentCtrl'
+   }).
+   when('/continue',{
+        teplateUrl: 'continue.html',
+       controller: 'continueCtrl'
+        });
 	
 }]);
+
+
+app.controller("appointmentCtrl",function($scope,$location){
+    //$scope.message="appintment controller";
+    
+    
+});
+
+
+app.controller("continueCtrl",function($scope,$location){
+    //$scope.message="continueCtrl controller";
+    
+    
+});
+
+
+
+
 
 
 app.factory("Auth", ["$firebaseAuth",
@@ -83,16 +109,17 @@ app.controller("signupController", ["$scope", "Auth","$firebaseArray",
        
       
     $scope.createUser = function() {
+        
       $scope.message = null;
       $scope.error = null;
         
     var users = { "name":$scope.uname,
                       "email":$scope.email,
                       "password": $scope.password,
-                     "mobile":$scope.mobile,  
-                     "gender":$scope.gender, 
-                     "userType":$scope.uType
-                   };    
+                      "mobile":$scope.mobile,  
+                      "gender":$scope.gender, 
+                      "userType":$scope.uType
+                    };    
         
         
       // Create a new user
