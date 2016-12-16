@@ -31,6 +31,17 @@ angular.module('starter', ['ionic'])
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
+
+  .state('tabs.home',{
+    url:'/home',
+    views: {
+      'home-tab': {
+        templateUrl:'templates/home.html',
+        controller:'homeController'
+      }
+    }
+  })
+
   .state('tabs.list',{
     url:'/list',
     views: {
@@ -40,12 +51,71 @@ angular.module('starter', ['ionic'])
       }
     }
   })
-  $urlRouterProvider.otherwise('/tab/list');
-})
 
-.controller("ListController", ['$scope','$http', function($scope,$http){
+
+  .state('tabs.calendar',{
+    url:'/calendar',
+    views: {
+      'calendar-tab': {
+        templateUrl:'templates/calendar.html',
+        controller:'calendarController'
+      }
+    }
+  })
+
+
+  .state('tabs.detail',{
+    url:'/list/:aId',
+    views: {
+      'list-tab': {
+        templateUrl:'templates/detail.html',
+        controller:'ListController'
+      }
+    }
+  })
+
+  $urlRouterProvider.otherwise('/tab/home');
+}) 
+
+
+.controller("calendarController", ['$scope','$http','$state','$ionicHistory', function($scope,$http,$state,$ionicHistory){
     $http.get('js/data.json').success(function(data){
-      $scope.artists=data;
+      $scope.calendar=data.calendar;
+
+      $scope.myGoBack = function() {
+      $ionicHistory.goBack();
+     }
+      
+
+      /*$scope.onItemDelete= function(item){
+        $scope.artists.splice($scope.artists.indexOf(item),1);
+      }
+
+      $scope.doRefresh = function(){
+        $http.get('js/data.json').success(function(data){
+        $scope.artists=data;
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+
+      }
+ 
+      $scope.toggleStar = function(item){ 
+        item.star= !item.star;
+      }
+
+      $scope.moveItem= function(item, fromIndex, toIndex){
+        $scope.artists.splice(fromIndex,1);
+        $scope.artists.splice(toIndex,0,item);
+      };*/
+    });
+}])
+
+
+
+.controller("ListController", ['$scope','$http','$state','$ionicHistory', function($scope,$http,$state,$ionicHistory){
+    $http.get('js/data.json').success(function(data){
+      $scope.artists=data.artists;
+      $scope.whichartist=$state.params.aId;
 
       $scope.onItemDelete= function(item){
         $scope.artists.splice($scope.artists.indexOf(item),1);
@@ -63,9 +133,16 @@ angular.module('starter', ['ionic'])
         item.star= !item.star;
       }
 
+      $scope.myGoBack = function() {
+      $ionicHistory.goBack();
+     }
+
       $scope.moveItem= function(item, fromIndex, toIndex){
         $scope.artists.splice(fromIndex,1);
         $scope.artists.splice(toIndex,0,item);
       };
     });
 }]);
+
+
+

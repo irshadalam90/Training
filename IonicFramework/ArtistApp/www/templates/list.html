@@ -1,5 +1,5 @@
 
-      <ion-header-bar class="bar-royal">
+      <ion-header-bar class="bar-positive">
         <button class="button button-icon ion-ios-minus-outline"
         ng-click="data.showDelete = !data.showDelete;
         data.showReorder=false;">
@@ -27,7 +27,8 @@
         show-delete="data.showDelete"
         show-reorder="data.showReorder">
           <ion-item class="item-thumbnail-left 
-          item-text-wrap item-icon-right " 
+          item-text-wrap item-icon-right" 
+          href="#/tab/list/{{item.shortname}}" 
           ng-repeat="item in artists | filter: query">
             <img src="img/{{item.shortname}}_tn.jpg">
             <h2>{{item.name}}</h2>
