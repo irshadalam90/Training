@@ -1,0 +1,31 @@
+
+      <ion-header-bar class="bar-positive">
+        <h1 class="title">Sign Up Form</h1>
+      </ion-header-bar>
+
+
+      <ion-content>
+      <h1>{{message}}</h1>
+        <div class="list">
+          <form name="myForm" ng-submit="submitData()">
+          <label class="item item-input">
+            <span class="input-label">Email</span>
+            <input type="email" name="email" ng-model="email">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label">Password</span>
+            <input type="password" name="password" ng-model="password">
+          </label>
+
+          <label class="item item-input">
+            <span class="input-label">Phone No.</span>
+            <input type="number" name="phone" ng-model="phone">
+          </label>
+
+          <button class="button button-royal button-block">Sign Up</button>
+          <span>{{myWelcome}}</span>
+          </form>
+        </div>
+      </ion-content>
+    
