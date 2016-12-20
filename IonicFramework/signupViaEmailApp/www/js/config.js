@@ -1,4 +1,4 @@
-angular.module('signupApp')
+/*angular.module('signupApp')
 
 .config(function($stateProvider, $urlRouterProvider){
   $stateProvider
@@ -16,3 +16,4 @@ angular.module('signupApp')
         controller:'signupCtrl'
       }
   });
+*/

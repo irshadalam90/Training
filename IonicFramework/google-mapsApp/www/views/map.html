@@ -1,0 +1,21 @@
+<ion-view view-title="Ionic Map">
+  <ion-content class="has-header" style='height: 100%;'>
+    <div class="row geolocation-row">
+       <div class="col col-center">
+          <button class="geolocation-button button button-block button-positive" ng-click="tryGeoLocation()">
+            Try the Geo Location feature!
+          </button>
+        </div>
+    </div>
+
+    <div class="map-container" data-tap-disabled="true">
+       <map class="map" zoom="14" >
+          <!-- <custom-marker ng-repeat="cm in customMakers" position="[{{cm.lat}},{{cm.lng}}]" class="{{cm.class}}">
+          <h3 class="marker-title">{{cm.txt}}</h3>
+        </custom-marker> -->
+
+       </map>
+    </div>
+  </ion-content>
+</ion-view>  
+    

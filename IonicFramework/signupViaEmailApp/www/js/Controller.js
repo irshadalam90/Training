@@ -1,6 +1,9 @@
-angular.module('signupApp')
+//angular.module('signupApp')
 
-.controller('signupCtrl', function($http){
+
+
+
+/*.controller('signupCtrl', function($http){
   var vm=this;
   vm.message="hello";
   vm.userData={
@@ -35,6 +38,9 @@ angular.module('signupApp')
   
   };  
 });
+*/
+
+
 
 
 
