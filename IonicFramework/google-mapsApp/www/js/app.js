@@ -30,7 +30,18 @@ angular.module('starter', ['ionic','ngCordova','ngMaps'])
     url: '/map',
     templateUrl: 'views/map.html',
     controller: 'MapCtrl'
-  });
+  })
+
+  .state('place', {
+    url: '/place/:placeId',
+    templateUrl: "views/place.html",
+    controller: 'PlaceCtrl',
+    resolve: {
+      place: function($stateParams, GooglePlacesService) {
+        return GooglePlacesService.getPlaceDetails($stateParams.placeId);
+      }
+    }
+  })
  
   $urlRouterProvider.otherwise("/map");
  
@@ -39,29 +50,3 @@ angular.module('starter', ['ionic','ngCordova','ngMaps'])
 
 
 
-
-
-.controller('MapCtrl', function($scope,$state,$cordovaGeolocation, $ionicLoading){
-  $scope.tryGeoLocation=function(){
-    $ionicLoading.show({
-      template: 'Getting Current position...'
-    });
-
-     // Clean map
-  cleanMap();
-  //$scope.search.input = "";
-
-  $cordovaGeolocation.getCurrentPosition({
-    timeout: 10000,
-    enableHighAccuracy: true
-  }).then(function(position){
-    $ionicLoading.hide().then(function(){
-      $scope.latitude = position.coords.latitude;
-      $scope.longitude = position.coords.longitude;
-
-      createMarker({lat: position.coords.latitude, lng: position.coords.longitude});
-    });
-  });
-};
-
-});
