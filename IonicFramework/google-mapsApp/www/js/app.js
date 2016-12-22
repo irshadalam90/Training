@@ -32,16 +32,7 @@ angular.module('starter', ['ionic','ngCordova','ngMaps'])
     controller: 'MapCtrl'
   })
 
-  .state('place', {
-    url: '/place/:placeId',
-    templateUrl: "views/place.html",
-    controller: 'PlaceCtrl',
-    resolve: {
-      place: function($stateParams, GooglePlacesService) {
-        return GooglePlacesService.getPlaceDetails($stateParams.placeId);
-      }
-    }
-  })
+  
  
   $urlRouterProvider.otherwise("/map");
  

@@ -2,32 +2,12 @@ angular.module('starter')
 
 .controller('MapCtrl', function($scope,$state,$cordovaGeolocation, $ionicLoading, GooglePlacesService){
 
-   // Central Park location
-  var central_park = {
-    lat: 40.785091,
-    lng: -73.968285
-  };
-
-  $scope.customMarkers = [
-    {
-      lat: central_park.lat,
-      lng: central_park.lng,
-      class: "custom-marker",
-      text: "Central Park"
-    }
-  ];
-
-  // Init the center position for the map
-  $scope.latitude = central_park.lat;
-  $scope.longitude = central_park.lng;
 
   // Google Places search
   $scope.search = { input: '' };
   $scope.predictions = [];
 
-  // Keep track of every marker we create. That way we can remove them when needed
-  $scope.markers_collection = [];
-  $scope.markers_cluster = null;
+  
 
   // To properly init the google map with angular js
   $scope.init = function(map) {
@@ -35,62 +15,73 @@ angular.module('starter')
     $scope.$apply();
   };
 
-  createMarker = function(place){
-        // Custom image for marker
-        var custom_marker_image = {
-              url: '../img/ionic_marker.png',
-              size: new google.maps.Size(30, 30),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(0, 30)
-            },
-            marker_options = {
-              map: $scope.mymap,
-              icon: custom_marker_image,
-              animation: google.maps.Animation.DROP
-            };
 
-        // Handle both types of markers, places markers and location (lat, lng) markers
-        if(place.geometry){
-          marker_options.position = place.geometry.location;
-        }
-        else {
-          marker_options.position = place;
-        }
+  $scope.map = {
+  center: [39, -121],
+  options: function() {
+      return {
+        streetViewControl: true,
+        scrollwheel: true
+      }
+  }
+};
 
-        var marker = new google.maps.Marker(marker_options);
+  $scope.marker = {
+  position: [
+              {"lattitude":39, "longitude":-121},
+              {"lattitude":41, "longitude":-122},
+              {"lattitude":43, "longitude":-123},
+              {"lattitude":44, "longitude":-124}
+            ],
+  decimals: 4,
+  options: function() {
+    return { draggable: true };
+  }
+}
 
-        // For the places markers we are going to add a click event to display place details
-        if(place.place_id){
-          marker.addListener('click', function() {
-            showPlaceInfo(place);
-          });
-        }
+/*$scope.points = {
+  coords: [
+    [47,-122],
+    [48,-123],
+    [47,-123],
+    [48,-122]
+  ],
+  options: function(coords, properties, i, map) {
+    return {
+      draggable: true
+    }
+  },
+  events: {
+    click: function(e, point, map, points) {
+      alert(point)
+    }
+  },
+  decimals: 3
+};*/
 
-        $scope.markers_collection.push(marker);
 
-        return marker;
-      },
-
+ 
 
 $scope.tryGeoLocation=function(){
     $ionicLoading.show({
       template: 'Getting Current position...'
     });
 
-     // Clean map
-  //cleanMap();
+     
   $scope.search.input = "";
 
   $cordovaGeolocation.getCurrentPosition({
-    timeout: 10000,
+    timeout: 1000,
     enableHighAccuracy: true
   }).then(function(position){
     $ionicLoading.hide().then(function(){
       $scope.latitude = position.coords.latitude;
       $scope.longitude = position.coords.longitude;
 
-      createMarker({lat: position.coords.latitude, lng: position.coords.longitude});
+      
     });
+
+
   });
 };
 
@@ -107,50 +98,7 @@ $scope.getPlacePredictions = function(query){
   };
 
 
-  $scope.selectSearchResult = function(result){
-    //search.input = result.description;
-    $scope.predictions = [];
-
-    $ionicLoading.show({
-      template: 'Searching restaurants near '+result.description+' ...'
-    });
-
-    // With this result we should find restaurants arround this place and then show them in the map
-    // First we need to get LatLng from the place ID
-    GooglePlacesService.getLatLng(result.place_id)
-    .then(function(result_location){
-      // Now we are able to search restaurants near this location
-      GooglePlacesService.getPlacesNearby(result_location)
-      .then(function(nearby_places){
-        // Clean map
-        //cleanMap();
-
-        $ionicLoading.hide().then(function(){
-          // Create a location bound to center the map based on the results
-          var bound = new google.maps.LatLngBounds(),
-              places_markers = [];
-
-          for (var i = 0; i < nearby_places.length; i++) {
-            bound.extend(nearby_places[i].geometry.location);
-            var place_marker = createMarker(nearby_places[i]);
-            places_markers.push(place_marker);
-          }
-
-          // Create cluster with places
-          //createCluster(places_markers);
-
-          var neraby_places_bound_center = bound.getCenter();
-
-          // Center map based on the bound arround nearby places
-          $scope.latitude = neraby_places_bound_center.lat();
-          $scope.longitude = neraby_places_bound_center.lng();
-
-          // To fit map with places
-          //$scope.mymap.fitBounds(bound);
-        });
-      });
-    });
-  };
+  
 
 });
 

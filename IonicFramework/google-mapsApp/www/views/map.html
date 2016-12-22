@@ -19,7 +19,7 @@
           <div ng-show="predictions.length > 0" class="row row-no-padding search-results">
             <div class="col">
               <div class="list location-results-list">
-                <a ng-repeat="prediction in predictions" class="item item-icon-left location-item" ng-click="selectSearchResult(prediction)">
+                <a ng-repeat="prediction in predictions" class="item item-icon-left location-item" >
                   <i class="icon ion-location"></i>
                   <h3 class="location-name">{{prediction.terms[0].value}}</h3>
                   <span class="location-desc">{{prediction.description}}</span>
@@ -29,10 +29,12 @@
           </div>
         </div>
         <div class="map-container" data-tap-disabled="true">
-          <map class="map" zoom="14" map-initialized="init(map)"scale-control="false" map-type-control="false" street-view-control="false" >
-            <custom-marker ng-repeat="cm in customMarkers" position="[{{cm.lat}}, {{cm.lng}}]" class="{{cm.class}}">
-              <h3 class="marker-title">{{cm.text}}</h3>
-            </custom-marker>
+          <map ng-transclude class="map" zoom="14" center="map.center"  >
+            <marker ng-repeat="m in marker" position="m.position" decimals="m.decimals" options="m.options" ></marker>
+           <!-- <div>
+           <points coords="points.coords" options="points.options" events="points.events" decimals="points.decimals"></points>
+          </div> -->
+            
           </map>
         </div>
       </div>
