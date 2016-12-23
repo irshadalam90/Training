@@ -29,15 +29,11 @@
           </div>
         </div>
         <div class="map-container" data-tap-disabled="true">
-          <map ng-transclude class="map" zoom="14" center="map.center"  >
+          <map ng-transclude class="map" zoom="14" center="map.center" options="map.options" >
             <marker ng-repeat="m in marker" position="m.position" decimals="m.decimals" options="m.options" ></marker>
-           <!-- <div>
-           <points coords="points.coords" options="points.options" events="points.events" decimals="points.decimals"></points>
-          </div> -->
-            
+             <points coords="points.coords" options="points.options" events="points.events" decimals="points.decimals"></points>
           </map>
         </div>
-      </div>
     </div>
   </ion-content>
 </ion-view>

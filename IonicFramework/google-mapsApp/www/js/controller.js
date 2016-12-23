@@ -17,7 +17,7 @@ angular.module('starter')
 
 
   $scope.map = {
-  center: [39, -121],
+  center: [47,-122],
   options: function() {
       return {
         streetViewControl: true,
@@ -26,7 +26,7 @@ angular.module('starter')
   }
 };
 
-  $scope.marker = {
+  /*$scope.marker = {
   position: [
               {"lattitude":39, "longitude":-121},
               {"lattitude":41, "longitude":-122},
@@ -37,16 +37,16 @@ angular.module('starter')
   options: function() {
     return { draggable: true };
   }
-}
+}*/
 
-/*$scope.points = {
+$scope.points = {
   coords: [
     [47,-122],
-    [48,-123],
-    [47,-123],
-    [48,-122]
+    [48,-121],
+    [47,-120],
+    [48,-119]
   ],
-  options: function(coords, properties, i, map) {
+  options: function(coords, map) {
     return {
       draggable: true
     }
@@ -57,7 +57,7 @@ angular.module('starter')
     }
   },
   decimals: 3
-};*/
+};
 
 
  
@@ -68,10 +68,10 @@ $scope.tryGeoLocation=function(){
     });
 
      
-  $scope.search.input = "";
+  //$scope.search.input = "";
 
   $cordovaGeolocation.getCurrentPosition({
-    timeout: 1000,
+    timeout: 10000,
     enableHighAccuracy: true
   }).then(function(position){
     $ionicLoading.hide().then(function(){
