@@ -1,0 +1,13 @@
+<ion-pane>
+  	<ion-view ng-init="home.startProgressBar()">
+  		<ion-content class="home-scroll" has-bouncing="false">
+  			<div class="home-background">
+  				<img src="img/smartelogo.png" alt="" width="200px">
+  			</div>
+  			<div class="loader-new">
+  				<img src="img/home-screen-running-icon.png" alt="" id="car">
+  				<progress id="progressbar" max="100" value="{{ home.progressval }}"></progress>
+  			</div>
+  		</ion-content>
+  	</ion-view>
+</ion-pane>
