@@ -1,4 +1,4 @@
-angular.module('smarte', ['ionic'])
+angular.module('smarte', ['ionic','ngMap'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

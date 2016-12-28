@@ -21,12 +21,12 @@ angular.module('starter', ['ionic'])
       StatusBar.styleDefault();
     }
 
-   /* var push = new Ionic.push({
+    var push = new Ionic.push({
       "debug": true
     }) ;
 
     push.register(function(token){
       console.log("Device token:", token.token);
-    });*/
+    });
   });
 })

@@ -1,0 +1,16 @@
+<ion-view>
+<ion-header-bar class="bar bar-header bar-light">
+	<div class="buttons">
+		<button class="button button-icon icon-navicon-round"
+		ng-click="toggleSideMenu()">
+		</button>
+	</div>
+</ion-header-bar>
+
+<ion-content>
+	<div class="map-container" data-tap-disabled="true">
+		<ng-map class="map" zoom="14" center="[{{latitude}}, {{longitude}}]" zoom-control="true" scale-control="false" map-type-control="false" street-view-control="false" map-initialized="init(map)"><ng-map>
+	</div>
+</ion-content>		
+
+</ion-view>
