@@ -1,12 +1,16 @@
-//angular.module('signupApp')
+angular.module('signupApp')
 
 
+.controller('homeCtrl',function($scope,$state){
+    $scope.signupForm= function(){
+      $state.go('signup')
+    }
 
+  })
 
-/*.controller('signupCtrl', function($http){
-  var vm=this;
-  vm.message="hello";
-  vm.userData={
+.controller('signupCtrl', function($scope, $http, $ionicHistory){
+  //var vm=this;
+    $scope.userData={
           "user": {
             "data": {
                 "type": "users",
@@ -24,23 +28,23 @@
     
   
 
-  vm.submitData = function(){
-    $http({
+  $scope.submitData = function(){
+    /*$http({
       method: 'POST',
       url: 'http://gase.craveit.in/api/users',
       data: $scope.userData.user.data.type.attributes
     }).then(function mySuccess(response){
-            vm.myWelcome = response.data;
+            $scope.myWelcome = response.data;
             },function myError(response){
-                vm.myWelcome = response.data;
-                });
+                $scope.myWelcome = response.data;
+                });*/
 
   
   };  
+
+  $scope.myGoBack = function() {
+      $ionicHistory.goBack();
+     }
 });
-*/
-
-
-
 
 

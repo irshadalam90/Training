@@ -1,5 +1,6 @@
 
       <ion-header-bar class="bar-positive">
+        <a class="button icon-left ion-chevron-left button-clear" ng-click="myGoBack()"></a>
         <h1 class="title">Sign Up Form</h1>
       </ion-header-bar>
 
@@ -8,19 +9,29 @@
       
         <div class="list">
           <form name="myForm" ng-submit="submitData()">
+          <div> 
           <label class="item item-input">
             <span class="input-label">Email</span>
-            <input type="email" name="email" ng-model="email">
+            <input type="email" name="email" ng-model="email" required>
+            <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+              <span ng-show="myForm.email.$error.required">Email is required.</span>
+              <span ng-show="myForm.email.$error.email">Invalid email</span>
+            </span>
           </label>
-
+          </div>
           <label class="item item-input">
             <span class="input-label">Password</span>
-            <input type="password" name="password" ng-model="password">
+            <input type="password" name="password" ng-model="password" ng-minlength="8" ng-maxlength="20"  required>
+            <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+              <span ng-show="myForm.password.$error.required">password is required.</span>
+              <span ng-show="myForm.password.$error.minlength">password atleast 8 character</span>
+            </span>
           </label>
 
           <label class="item item-input">
             <span class="input-label">Phone No.</span>
             <input type="number" name="phone" ng-model="phone">
+            password
           </label>
 
           <button type="submit" class="button button-assertive button-block">Sign Up</button>

@@ -19,6 +19,19 @@ angular.module('smarte')
           $interval.cancel(vm.stopinterval);
         }
       } 
+      {
+        if(vm.resolved) {
+          $interval.cancel(vm.stopinterval);
+          if ($state.$current.toString() === 'home') {
+            if(vm.locationNotFound){
+              $state.go('noLocation');
+            } else {
+              $interval.cancel(vm.stopinterval);
+              $state.go('map');
+            }
+          }
+        }
+      }
     }, 30);
   }
 	startprogress();
