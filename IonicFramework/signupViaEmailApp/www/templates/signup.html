@@ -8,34 +8,46 @@
       <ion-content>
       
         <div class="list">
-          <form name="myForm" ng-submit="submitData()">
-          <div> 
-          <label class="item item-input">
+          <form name="myForm" >
+          
+          <label class="item item-input item-floating-label">
             <span class="input-label">Email</span>
-            <input type="email" name="email" ng-model="email" required>
+            <input type="email" name="email" ng-model="email" placeholder="Enter Email" required>
             <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
               <span ng-show="myForm.email.$error.required">Email is required.</span>
               <span ng-show="myForm.email.$error.email">Invalid email</span>
             </span>
           </label>
-          </div>
-          <label class="item item-input">
+          
+          <label class="item item-input item-floating-label">
             <span class="input-label">Password</span>
-            <input type="password" name="password" ng-model="password" ng-minlength="8" ng-maxlength="20"  required>
+            <input type="password" name="password" ng-model="password" placeholder="Enter password" ng-minlength="8" ng-maxlength="20"  required>
             <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
               <span ng-show="myForm.password.$error.required">password is required.</span>
               <span ng-show="myForm.password.$error.minlength">password atleast 8 character</span>
             </span>
           </label>
 
-          <label class="item item-input">
-            <span class="input-label">Phone No.</span>
-            <input type="number" name="phone" ng-model="phone">
-            password
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Mobile number</span>
+            <input type="number" name="mobile" ng-model="mobile" placeholder="Enter mobile number" ng-maxlength="10" required>
+            <span style="color:red" ng-show="myForm.mobile.$dirty && myForm.mobile.$invalid">
+              <span ng-show="myForm.mobile.$error.required">phone number is required.</span>
+              <span ng-show="myForm.mobile.$error.maxlength">phone number not greater than 10 digit</span>
+            </span>
           </label>
 
-          <button type="submit" class="button button-assertive button-block">Sign Up</button>
-         <span>{{myWelcome}}</span> 
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Enter Date of Birth</span>
+            <input type="text" name="dob" ng-model="dob" placeholder="Enter Date of Birth" ng-click="openDatePicker()" required>
+            <span style="color:red" ng-show="myForm.dob.$dirty && myForm.dob.$invalid">
+              <span ng-show="myForm.dob.$error.required">Date of Birth is required.</span>
+            </span>
+          </label>
+
+          <button type="submit" class="button button-assertive button-block" ng-click="submitData(myForm.$valid)">Sign Up</button>
+         
+         
           </form>
         </div>
       </ion-content>
