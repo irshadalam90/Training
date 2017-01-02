@@ -26,10 +26,14 @@ angular.module('signupApp', ['ionic','ionic-toast','ionic-datepicker'])
 
 .config(function($stateProvider, $urlRouterProvider){
   $stateProvider
-  .state('home',{
+  .state('sidemenus.home',{
     url: "/home",
-    templateUrl: 'templates/home.html',
-    controller: 'homeCtrl'
+      views: {
+        'menuContent': {
+        templateUrl: 'templates/home.html',
+        controller: 'homeCtrl'
+      }
+    }
   })
 
   .state('signup',{
@@ -38,7 +42,33 @@ angular.module('signupApp', ['ionic','ionic-toast','ionic-datepicker'])
     controller: 'signupCtrl'
   })
 
-  $urlRouterProvider.otherwise('/home');
+  .state('sidemenus',{
+    url: '/sidemenus',
+    templateUrl: 'templates/sidemenus.html',
+    controller: 'sidemenusCtrl'
+    
+  })
+
+  /*.state('profile',{
+    url: '/profile',
+        templateUrl: 'templates/profile.html',
+        controller: 'profileCtrl'
+     
+  })*/
+
+  .state('sidemenus.profile',{
+    url: '/profile',
+    views:{
+      'menuContent':{
+        templateUrl: 'templates/profile.html',
+        controller: 'profileCtrl'
+      }
+    }
+  })
+
+  
+
+  $urlRouterProvider.otherwise('/sidemenus/profile');
 })
 
 

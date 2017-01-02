@@ -8,7 +8,9 @@ angular.module('signupApp')
 
   })
 
-.controller('signupCtrl', function($scope, $http, $ionicHistory, ionicToast, ionicDatePicker){
+
+
+.controller('signupCtrl', function($scope, $http, $ionicHistory,$state, ionicToast, ionicDatePicker){
   //var vm=this;
     $scope.userData={
           "user": {
@@ -44,6 +46,7 @@ angular.module('signupApp')
       if(isValid){
         ionicToast.show('Account created Successfully', 'middle', false, 2500);
         //alert('Account created');
+        $state.go('profile');
       } 
       else{
        ionicToast.show("field can't be empty", 'middle', false, 2500); 
@@ -54,33 +57,51 @@ angular.module('signupApp')
 
     var ipObj1 = {
       callback: function (val) {  //Mandatory
-        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
-      },
-      disabledDates: [            //Optional
-        new Date(2016, 2, 16),
-        new Date(2015, 3, 16),
-        new Date(2015, 4, 16),
-        new Date(2015, 5, 16),
-        new Date('Wednesday, August 12, 2015'),
-        new Date("08-16-2016"),
-        new Date(1439676000000)
-      ],
-      from: new Date(2012, 1, 1), //Optional
-      to: new Date(2016, 10, 30), //Optional
-      inputDate: new Date(),      //Optional
-      mondayFirst: true,          //Optional
-      disableWeekdays: [0],       //Optional
-      closeOnSelect: false,       //Optional
-      templateType: 'popup'       //Optional
+        $scope.dob = new Date(val);
+        //console.log('Return value from the datepicker popup is : ' + val, new Date(val));
+      }
     }
 
     $scope.openDatePicker = function(){
       ionicDatePicker.openDatePicker(ipObj1);
     }
 
-    
-  
+  })
+
+.controller('sidemenusCtrl',function($scope){
    
-});
+    
+
+  })
+
+.controller('profileCtrl',function($scope,$http,$ionicSideMenuDelegate){
+  $http.get('js/data.json').success(function(data){
+      $scope.artists=data.artists;
+      //$scope.whichartist=$state.params.aId;
+
+     
+
+      $scope.doRefresh = function(){
+        $http.get('js/data.json').success(function(data){
+        $scope.artists=data;
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+
+      }
+
+      
+
+      $scope.myGoBack = function() {
+      $ionicHistory.goBack();
+     }
+
+     $scope.toggleLeft = function() {
+      $ionicSideMenuDelegate.toggleLeft();
+  };
+
+     
+    });  
+
+  });
 
 
