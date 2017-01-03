@@ -12,8 +12,8 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Menu List</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
@@ -25,10 +25,25 @@
           User List
         </ion-item>
         
-        <ion-item menu-close href="#/app/playlists">
+        <div>
+        <ion-item href="#/sidemenus/playlists" ng-click="showItem()" class="item item-icon-right">
           Playlists
+          <i id="like" ng-class="{'icon ion-ios-minus-empty': liked, 'icon ion-ios-plus-empty': !liked}" ></i>
+          </ion-item>     
+      
+      <div ng-show="showlist">
+        <ion-nav-view name="playlistsContent" ng-show="showlist"></ion-nav-view>
+      </div>
+      </div>
+
+      <div>
+      <ion-item menu-close href="#/sidemenus/home">
+        Logout  
         </ion-item>
+      </div>
       </ion-list>
+      
+      
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>

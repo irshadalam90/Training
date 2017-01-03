@@ -44,6 +44,7 @@ angular.module('signupApp', ['ionic','ionic-toast','ionic-datepicker'])
 
   .state('sidemenus',{
     url: '/sidemenus',
+    abstract: true,
     templateUrl: 'templates/sidemenus.html',
     controller: 'sidemenusCtrl'
     
@@ -62,6 +63,16 @@ angular.module('signupApp', ['ionic','ionic-toast','ionic-datepicker'])
       'menuContent':{
         templateUrl: 'templates/profile.html',
         controller: 'profileCtrl'
+      }
+    }
+  })
+
+  .state('sidemenus.playlists',{
+    url: '/playlists',
+    views:{
+      'playlistsContent':{
+        templateUrl: 'templates/playlists.html',
+        controller: 'playlistsCtrl'
       }
     }
   })

@@ -69,10 +69,27 @@ angular.module('signupApp')
   })
 
 .controller('sidemenusCtrl',function($scope){
-   
+   $scope.showlist=false;
+   $scope.liked=false;
+  $scope.showItem= function(){
+    $scope.showlist=!$scope.showlist;
+    $scope.liked=!$scope.liked;
+  }
     
 
   })
+
+.controller('playlistsCtrl', function($scope) {
+
+  $scope.playlists = [
+    { title: 'Reggae', id: 1 },
+    { title: 'Chill', id: 2 },
+    { title: 'Dubstep', id: 3 },
+    { title: 'Indie', id: 4 },
+    { title: 'Rap', id: 5 },
+    { title: 'Cowbell', id: 6 }
+  ];
+})
 
 .controller('profileCtrl',function($scope,$http,$ionicSideMenuDelegate){
   $http.get('js/data.json').success(function(data){
