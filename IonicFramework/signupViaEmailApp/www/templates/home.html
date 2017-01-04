@@ -1,23 +1,28 @@
-<ion-view view-title="User List">
+<ion-view view-title="Login">
 
 <ion-content>
 	<div class="list">
 		<form name="myForm" ng-submit="submitLogin()">
-          <label class="item item-input">
-            <span class="input-label">Email</span>
-            <input type="email" name="email" ng-model="email">
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Enter email Id</span>
+            <input type="email" name="email" ng-model="email" placeholder="Enter email Id">
           </label>
 
-          <label class="item item-input">
-            <span class="input-label">Password</span>
-            <input type="password" name="password" ng-model="password">
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Enter password</span>
+            <input type="password" name="password" ng-model="password" placeholder="Enter password">
           </label>
 
           <button class="button button-assertive button-block">Sign In</button>
           
 
-		  <button class="button button-assertive button-block" ng-click="signupForm()">Sign Up</button>
-		  <ion-nav-view name="signup-tab"></ion-nav-view> 
+		  <button class="button button-assertive button-block" ng-click="signupForm()">Create Account</button>
+
+      <button class="button button-royal button-block" ng-click="login()">Login with Facebook</button>
+
+
+
+		   
        
 
           </form>

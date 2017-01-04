@@ -1,10 +1,47 @@
 angular.module('signupApp')
 
 
-.controller('homeCtrl',function($scope,$state){
+.controller('homeCtrl',function($scope, $state, Facebook){
     $scope.signupForm= function(){
       $state.go('signup')
     }
+
+    var userIsConnected = false;
+      
+      Facebook.getLoginStatus(function(response) {
+        if (response.status == 'connected') {
+          userIsConnected = true;
+        }
+      });
+
+      $scope.IntentLogin = function() {
+        if(!userIsConnected) {
+         // $scope.login();
+        }
+      };
+
+    $scope.login = function() {
+        Facebook.login(function(response) {
+          if (response.status == 'connected') {
+            $scope.logged = true;
+            //$scope.me();
+            console.log(response);
+          }
+        
+        });
+      };
+
+       $scope.me = function() {
+          Facebook.api('/me', function(response) {
+            /**
+             * Using $scope.$apply since this happens outside angular framework.
+             */
+            $scope.$apply(function() {
+              $scope.user = response;
+            });
+            
+          });
+        };
 
   })
 
@@ -78,6 +115,7 @@ angular.module('signupApp')
     
 
   })
+
 
 .controller('playlistsCtrl', function($scope) {
 
