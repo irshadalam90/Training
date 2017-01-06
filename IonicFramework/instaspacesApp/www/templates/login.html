@@ -1,0 +1,38 @@
+<ion-header-bar class="bar-light">
+  <a class="button icon-left ion-chevron-left button-clear" ng-click="myGoBack()"></a>
+    <h1 class="title">Login</h1>
+</ion-header-bar>
+
+<ion-content>
+	<div class="list" >
+		<form name="myForm" >
+          <label class="item item-input item-floating-label lgn-form">
+            <span class="input-label">Email</span>
+            <input type="email" name="email" ng-model="email" placeholder="Email" style="outline: none;" required>
+            <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+              <span ng-show="myForm.email.$error.required">Email is required.</span>
+              <span ng-show="myForm.email.$error.email">Invalid email</span>
+            </span>
+          </label>
+
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Password</span>
+            <input type="password" name="password" ng-model="password" placeholder="password" required
+            ng-minlength="8" ng-maxlength="20">
+            <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+              <span ng-show="myForm.password.$error.required">password is required.</span>
+              <span ng-show="myForm.password.$error.minlength">password atleast 8 character</span>
+            </span>
+          </label>
+          <div class="lgn-btn-wrapper" >
+          <button class="lgn-input  button button-assertive" ng-click="userlogin(myForm.$valid)">Login</button>
+          </div>		   
+       
+
+          </form>
+        </div>
+      </ion-content>
+</ion-view> 
+
+
+

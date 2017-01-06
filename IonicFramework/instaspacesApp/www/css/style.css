@@ -1,0 +1,88 @@
+.lgn-btn-wrapper{
+     text-align:center;
+     margin-top: 30px;
+    
+}
+
+.lgn-input{
+	
+     width:95%;
+}
+	
+
+
+
+
+
+.lgn-form{
+	
+}
+
+.btn-home {
+    margin-top: 550px;
+
+}
+
+.box-img1{
+    background: url(../img/18122_x1.jpg);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+    
+}
+
+.cur-prs{
+    background: url(../img/1309521_161_z.jpg);
+    background-repeat: no-repeat;
+    
+    
+    background-repeat: no-repeat;
+}
+
+.cur-prs-wrapper{
+    text-align: center;
+    margin-top:80%;
+}
+
+.cur-prs-input{
+    
+    width:95%;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+
+.cur-prs-btn_nb{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.cur-prs-wrap_btm{
+    margin-top: 200px;
+    text-align: center;
+    border-top: solid 1px red;
+}
+
+.cur-prs-btn_btm{
+    width:100px;
+    margin-top: 5px;
+}
+
+
+.box-img2{
+    background: url(../img/portfolio_p7.JPG);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.box-img3{
+    background: url(../img/portfolio_p6.JPG);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 500px;
+    position: relative;
+}
