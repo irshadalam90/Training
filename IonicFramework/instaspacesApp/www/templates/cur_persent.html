@@ -2,6 +2,7 @@
 	<ion-content class="cur-prs">
 		
 			<!-- <div class="cur-prs-subimg"></div>-->
+			<div class="curp-img"></div>
 			<div class="cur-prs-wrapper">
 				<label class="item item-input cur-prs-input">
     				<i class="icon ion-search placeholder-icon"></i>
@@ -14,9 +15,10 @@
 			</div>
 
 			<div class="cur-prs-wrap_btm">
-				<button class="cur-prs-btn_btm button button-assertive ">Gurgaon</button>
-				<button class="cur-prs-btn_btm button button-assertive">Delhi</button>
-				<button class="cur-prs-btn_btm button button-assertive">Noida</button>
+				<button class="cur-prs-btn_btm button button-assertive" ng-click="openGurgaon()">Gurgaon</button>
+				<button class="cur-prs-btn_btm button button-assertive" ng-click="openDelhi()">Delhi</button>
+				<button class="cur-prs-btn_btm button button-assertive" ng-click="openNoida()">Noida</button>
 			</div>
+			
 	</ion-content>
 </ion-view>

@@ -35,7 +35,36 @@ angular.module('starter')
 	}
 })
 
-.controller('cur_persentCtrl', function($scope){
+.controller('cur_persentCtrl', function($scope,$state){
+	//var vm = this;
+	$scope.openGurgaon = function(){
+		$state.go('gurgaonspc');
+	}
+
+		$scope.openDelhi = function(){
+		$state.go('delhispc');
+	}
+
+		$scope.openNoida = function(){
+		$state.go('noidaspc');
+	}
+	
+	
+})
+
+.controller('gurgaonspcCtrl', function($scope){
+	//var vm = this;
+	
+	
+})
+
+.controller('delhispcCtrl', function($scope){
+	//var vm = this;
+	
+	
+})
+
+.controller('noidaspcCtrl', function($scope){
 	//var vm = this;
 	
 	

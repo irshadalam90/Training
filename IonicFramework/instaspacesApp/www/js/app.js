@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic','aCarousel'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -46,6 +46,27 @@ angular.module('starter', ['ionic'])
      templateUrl: 'templates/cur_persent.html',
      controller: 'cur_persentCtrl',
      controllerAs: 'curpCtrl'
+  })
+
+  .state('gurgaonspc',{
+    url: "/gurgaonspc",
+     templateUrl: 'templates/gurgaonspc.html',
+     controller: 'gurgaonspcCtrl',
+     controllerAs: 'ggnCtrl'
+  })
+
+  .state('delhispc',{
+    url: "/delhispc",
+     templateUrl: 'templates/delhispc.html',
+     controller: 'delhispcCtrl',
+     controllerAs: 'dlCtrl'
+  })
+
+  .state('noidaspc',{
+    url: "/noidaspc",
+     templateUrl: 'templates/noidaspc.html',
+     controller: 'noidaspcCtrl',
+     controllerAs: 'ndaCtrl'
   })
 
 

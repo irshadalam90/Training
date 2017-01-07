@@ -1,0 +1,79 @@
+
+
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-assertive">
+       
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+      <label class="item item-input cur-prs-input">
+    	<i class="icon ion-search placeholder-icon"></i>
+    	<input type="text" ng-model="search" 
+    	name="search" placeholder="Search by locality or city">
+  	</label>
+    </ion-nav-bar>
+    <ion-nav-view name=""></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    
+    <ion-content>
+
+
+
+    
+    <div class="list card">
+		<div class="item item-thubmnail">
+    	<img src="cover.jpg" alt="image">
+  		</div>
+	</div>
+	<ion-list>
+
+        <ion-item menu-close href="#">
+          Home
+        </ion-item>
+
+        <ion-item menu-close href="#">
+         Booking
+        </ion-item>
+
+        <ion-item menu-close href="#">
+         contact Us
+        </ion-item>
+
+        <ion-item menu-close href="#">
+          User Info
+        </ion-item>
+
+        <ion-item menu-close href="#">
+         Submit a Query
+        </ion-item>
+        
+        <ion-item menu-close href="#">
+         Partner with us
+        </ion-item>
+        
+      <ion-item menu-close href="#">
+        Login/Logout  
+        </ion-item>
+      
+      </ion-list>
+      
+      
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
+
+
+<div>
+<a-carousel
+      item-directive="carousel-text-item"
+      carousel-options="::vm.carouselOptions"
+      array-provider="::vm.carouselData"
+      on-select="vm.onSelectCarousel(item)">
+</a-carousel>
+
+</div>
